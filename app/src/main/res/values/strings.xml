@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Flight Manager</string>
+    <string name="setting">Setting</string>
+    <string name="add_board_pass">ADD BOARDING PASS</string>
+    <string name="boarding_pass_txt">Look like at don\'t have any boarding passes yet. Click the button below to import a boarding pass</string>
+    <string name="selrct_boarding_pass_document">selrct boarding pass document</string>
+    <string name="scan_your_download">Scan your \"Downloads\" folder for boarding pass</string>
+    <string name="scan_physical_boarding_pass">Scan a physical boarding pass</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="flight">Flight</string>
+    <string name="show_notification">Show a notification for upcoming flights</string>
+    <string name="time_before_flight">4 hours before the flight</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="display_all_data">Display all data captured from the boarding pass,\n most of which is unnecssary</string>
+    <string name="show_additional_info">Show additional information</string>
+    <string name="reduce_eyestrain">Reduce eyestrain and save battaery with dark mode</string>
+    <string name="enable_dark_mode">Enable dark mode</string>
+    <string name="prevent_screen_from_rotating">Prevent the screen from rotating\n when displaying QR code</string>
+    <string name="lock_orientation">Lock orienation</string>
+    <string name="display">Display</string>
+    <string name="romove_old_flight">Remove old flight</string>
+    <string name="auto_remove_flights">Automaticaly remove flights \nthat accurred more than 14 days ago</string>
+</resources>

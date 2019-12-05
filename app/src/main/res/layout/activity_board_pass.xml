@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.broadPass.BoardPassActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/board_pass_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+        app:title="@string/app_name"
+        app:menu="@menu/board_pass_menu"
+        />
+
+    <Button
+        android:id="@+id/add_board_pass_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/colorAccent"
+        android:drawableLeft="@drawable/ic_add"
+        android:elevation="10dp"
+        android:text="@string/add_board_pass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/board_pass_home_img"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/boarding_pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board_pass_toolbar" />
+
+    <TextView
+        android:id="@+id/board_pass_home_txt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/boarding_pass_txt"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_board_pass_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board_pass_home_img"
+        app:layout_constraintVertical_bias="0.19" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
