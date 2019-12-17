@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fafafa">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/board_pass_card_view_item"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="PrivateResource">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/first_name_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/firstname"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/last_name"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/first_name_txt"
+                app:layout_constraintTop_toTopOf="@+id/first_name_txt" />
+
+            <TextView
+                android:id="@+id/date_of_board_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/date_of_board_pass"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/flight_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/flight"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/first_name_txt" />
+
+            <TextView
+                android:id="@+id/flight_operator_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/flight_operator"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/flight_txt"
+                app:layout_constraintTop_toTopOf="@+id/flight_txt" />
+
+            <TextView
+                android:id="@+id/flight_number_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/flight_number"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/flight_operator_txt"
+                app:layout_constraintTop_toTopOf="@+id/flight_operator_txt" />
+
+            <TextView
+                android:id="@+id/reservition_nomber_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/reservation_number"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_of_board_pass" />
+
+            <TextView
+                android:id="@+id/booking_ref_tex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/booking_ref"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reservition_nomber_txt" />
+
+            <TextView
+                android:id="@+id/to_airport_code_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/to_airport_code"
+                android:textColor="@color/airport_code"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booking_ref_tex" />
+
+            <TextView
+                android:id="@+id/from_airport_code_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/from_airport_code"
+                android:textColor="@color/airport_code"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/to_airport_code_txt" />
+
+            <TextView
+                android:id="@+id/from_airport_name_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/from_airport_name"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/from_airport_code_txt" />
+
+            <TextView
+                android:id="@+id/to_airport_name_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/to_airport_name"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/to_airport_code_txt" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/from_airport_code_txt"
+                app:layout_constraintEnd_toStartOf="@+id/to_airport_code_txt"
+                app:layout_constraintHorizontal_bias="0.482"
+                app:layout_constraintStart_toEndOf="@+id/from_airport_code_txt"
+                app:layout_constraintTop_toTopOf="@+id/from_airport_code_txt"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="planeanimatuin.json"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

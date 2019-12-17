@@ -1,14 +1,24 @@
 package com.example.flightmanager.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.*
+
+@Entity(tableName = "board_pass")
 data class BoardingPassModel(
-    val firstName:String,
-    val lastName:String,
-    val bookingRef:String,
-    val from:String,
-    val to:String,
-    val flightOperator:String,
-    val flightNumber:String,
-    val date:String,
-    val flightClass:String,
-    val seat:String
-)
+    var firstName:String,
+    var lastName:String,
+    var bookingRef:String,
+    var from:String,
+    var to:String,
+    var flightOperator:String,
+    var flightNumber:String,
+    var date:String,
+    var flightClass:String,
+    var seat:String,
+    var fromAirport: String,
+    var toAirport:String
+){
+    @PrimaryKey(autoGenerate = true)
+    var  id: Int = 0
+}

@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#3b80e1</color>
     <color name="black">#000000</color>
+    <color name="airport_code">#fbab2c</color>
+    <color name="card_view_background">#fafafa</color>
 
 </resources>

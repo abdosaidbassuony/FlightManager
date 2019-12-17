@@ -22,4 +22,17 @@
     <string name="display">Display</string>
     <string name="romove_old_flight">Remove old flight</string>
     <string name="auto_remove_flights">Automaticaly remove flights \nthat accurred more than 14 days ago</string>
+    <string name="firstname">firstName</string>
+    <string name="last_name">lastName</string>
+    <string name="flight_operator">BA</string>
+    <string name="flight_number">123</string>
+    <string name="date_of_board_pass">Desmber 31</string>
+    <string name="reservation_number">Reservation No</string>
+    <string name="booking_ref">XYZ123</string>
+    <string name="to_airport_code">SFO</string>
+    <string name="from_airport_code">ZRH</string>
+    <string name="from_airport_name">Zurich</string>
+    <string name="to_airport_name">San Francisco</string>
+    <string name="your_upcoming_flight">Your uocoming flight</string>
+    <string name="your_previous_flight">Your previous flight</string>
 </resources>
