@@ -2,12 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.flightmanager">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MainApplication"
@@ -18,15 +21,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.boardPassInfo.BoardingPassInformation"
+            android:theme="@style/MyTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.flightmanager.view.broadPass.BoardPassActivity" />
+        </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity android:name=".view.setting.SettingActivity"
+        <activity
+            android:name=".view.setting.SettingActivity"
             android:parentActivityName=".view.broadPass.BoardPassActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.broadPass.BoardPassActivity"/>
+                android:value=".view.broadPass.BoardPassActivity" />
         </activity>
         <activity
             android:name=".view.splash.SplashActivity"
@@ -45,6 +55,16 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver
+            android:name=".service.Receiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+        <service
+            android:name=".service.Service"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

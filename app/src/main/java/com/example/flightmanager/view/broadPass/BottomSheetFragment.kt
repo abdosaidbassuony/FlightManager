@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.flightmanager.R
 import com.example.flightmanager.contract.BottomSheetContract
+import com.example.flightmanager.view.AbstractPresenter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 
 /**
@@ -25,7 +27,7 @@ import org.koin.android.ext.android.inject
      val PICK_PDF_CODE=100
 }
 
-    val boardingPassPresenter = BottomSheetPresenter(this)
+   override val presenter : BottomSheetPresenter by inject { parametersOf(this) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,11 +38,11 @@ import org.koin.android.ext.android.inject
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         select_board_pass_doc.setOnClickListener {
-            boardingPassPresenter.selectBoardingPassDocumentClick()
+            presenter.selectBoardingPassDocumentClick()
             dialog?.cancel()
         }
         scan_qr_code.setOnClickListener {
-            boardingPassPresenter.scanQrCodeClick()
+            presenter.scanQrCodeClick()
             dialog?.cancel()
         }
         scan_downloads.setOnClickListener {

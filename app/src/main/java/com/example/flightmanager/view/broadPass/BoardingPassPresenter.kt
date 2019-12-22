@@ -1,33 +1,32 @@
 package com.example.flightmanager.view.broadPass
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
-import android.os.Build
-import android.renderscript.Allocation
-import android.util.Log
-import androidx.annotation.RequiresApi
+import android.content.Intent
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import com.example.flightmanager.contract.BoardingPassContract
 import com.example.flightmanager.data.database.BoardingPassDatabse
 import com.example.flightmanager.data.model.AirPortModel
 import com.example.flightmanager.data.model.BoardingPassModel
 import com.example.flightmanager.data.network.AirPortApiService
+import com.example.flightmanager.service.Receiver
+import com.example.flightmanager.view.AbstractPresenter
 import com.example.flightmanager.view.adapter.PreviousFlightItem
 import com.example.flightmanager.view.adapter.UpComingFlightItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
-import java.util.function.LongFunction
 
-class BoardingPassPresenter(context: Context,  var view: BoardingPassContract.View) :BoardingPassContract.Presenter {
+
+ class BoardingPassPresenter(context: Context, override var view: BoardingPassContract.View) :
+    AbstractPresenter<BoardingPassContract.View, BoardingPassContract.Presenter>(), BoardingPassContract.Presenter {
     val databse = BoardingPassDatabse(context)
     val airPortModel: AirPortModel? = null
     override fun addBoardingPassClick() {
@@ -53,12 +52,6 @@ class BoardingPassPresenter(context: Context,  var view: BoardingPassContract.Vi
                       view.showListOfBoardingPass()
                }
             })
-
-
-
-
-
-
     }
     @SuppressLint("SimpleDateFormat")
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -89,4 +82,38 @@ class BoardingPassPresenter(context: Context,  var view: BoardingPassContract.Vi
         }
 
     }
-}
+
+    override fun navigatToBoardPassInfo(upComing:Item<GroupieViewHolder>) {
+        view.showBoardPassInf(upComing)
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+    override fun Notification(lifecycleOwner: LifecycleOwner, context: Context) {
+        databse.boardingPassDao().getAllBoardPass().observe(lifecycleOwner, androidx.lifecycle.Observer {
+            val notifyIntent = Intent(context, Receiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context,0,notifyIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            GlobalScope.launch(Dispatchers.Main) {
+                it?.forEach {
+                    val simpleDateFormat = SimpleDateFormat(" MMM d")
+                    val date = simpleDateFormat.parse(it.date)
+                    val calendar:Calendar = Calendar.getInstance().apply {
+                        time =date
+
+                    }
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,pendingIntent)
+                }
+
+            }
+        })
+
+
+
+    }
+
+     override fun stop() {
+     }
+ }

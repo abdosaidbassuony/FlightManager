@@ -23,6 +23,8 @@ class PreviousFlightItem(val boardingPassModel: BoardingPassModel) : Item<Groupi
         viewHolder.itemView.previous_flight_to_airport_name_txt.text= boardingPassModel.toAirport
         viewHolder.itemView.previous_flight_from_airport_name_txt.text=boardingPassModel.fromAirport
 
+        
+
     }
 
 }

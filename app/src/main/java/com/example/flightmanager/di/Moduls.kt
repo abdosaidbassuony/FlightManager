@@ -2,31 +2,28 @@ package com.example.flightmanager.di
 
 
 
+import android.content.Context
 import com.example.flightmanager.contract.BoardingPassContract
-import com.example.flightmanager.di.Params.BOARDINGPASS_VIEW
-import com.example.flightmanager.view.broadPass.BoardPassActivity
+import com.example.flightmanager.contract.BottomSheetContract
 import com.example.flightmanager.view.broadPass.BoardingPassPresenter
-import org.koin.core.parameter.DefinitionParameters
-import org.koin.core.parameter.parametersOf
-import org.koin.core.qualifier.named
-import org.koin.core.scope.ScopeID
+import com.example.flightmanager.view.broadPass.BottomSheetPresenter
+import com.example.flightmanager.view.setting.SettingContract
 import org.koin.dsl.module
 
 val module = module {
 
 
-   factory { BoardingPassPresenter(get(),get { parametersOf(BOARDINGPASS_VIEW) })as BoardingPassContract.Presenter }
-
-
-
-
+   factory {(context: Context,  view: BoardingPassContract.View)-> BoardingPassPresenter(context,view) }
+   factory { (view:BottomSheetContract.View)->BottomSheetPresenter(view) }
 
 }
 
 
 
-object Params{
-   const val BOARDINGPASS_VIEW = "BOARDINGPASS_VIEW"
-}
+
+
+
+
+
 
 

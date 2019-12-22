@@ -11,7 +11,7 @@ import com.example.flightmanager.data.model.BoardingPassModel
 
 @Database(
     entities = [BoardingPassModel::class],
-    version = 2
+    version = 3
 )
  abstract class BoardingPassDatabse :RoomDatabase() {
     abstract fun boardingPassDao():BoardingPassDao
@@ -26,12 +26,12 @@ import com.example.flightmanager.data.model.BoardingPassModel
         }
         fun buildDatabase(context: Context)=
             Room.databaseBuilder(context.applicationContext,BoardingPassDatabse::class.java,"boarding_pass.db")
-                .addMigrations(MIGRATION_1_2)
+                .fallbackToDestructiveMigration()
                 .build()
     }
 
 }
-val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+val MIGRATION_2_3: Migration = object : Migration(2, 3) {
     override fun migrate(database: SupportSQLiteDatabase) { // Since we didn't alter the table, there's nothing else to do here.
     }
 }

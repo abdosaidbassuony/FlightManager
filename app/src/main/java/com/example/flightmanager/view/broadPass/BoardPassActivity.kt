@@ -16,20 +16,29 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.flightmanager.R
 import com.example.flightmanager.contract.BoardingPassContract
 import com.example.flightmanager.data.model.BoardingPassModel
+import com.example.flightmanager.view.adapter.UpComingFlightItem
+import com.example.flightmanager.view.boardPassInfo.BoardingPassInformation
 import com.example.flightmanager.view.setting.SettingActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_board_pass.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
+    companion object{
+        val BOARD_PASS_KEY= "BOARD_PASS_KEY"
+        val CHANNEL_ID = "1"
+    }
     var firstName: String? = null
     var lastName: String? = null
     var bookingRef: String? = null
@@ -41,18 +50,24 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
     var flightClass: String? = null
     var seat: String? = null
     var boardingIndex: String? = null
+    var qrScaneImage:String?=null
     var boardpass: BoardingPassModel? = null
-    var presenter: BoardingPassPresenter? = null
+    override val presenter: BoardingPassPresenter by inject{ parametersOf(this,this)}
     val previousadapterView = GroupAdapter<GroupieViewHolder>()
     val upcomingAdapterView = GroupAdapter<GroupieViewHolder>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_pass)
         setSupportActionBar(board_pass_toolbar)
-        presenter = BoardingPassPresenter(applicationContext, this)
         add_board_pass_btn.setOnClickListener {
-            presenter?.addBoardingPassClick()
+            presenter.addBoardingPassClick()
         }
+        upcomingAdapterView.setOnItemClickListener { item, view ->
+            presenter.navigatToBoardPassInfo(item)
+        }
+        presenter.Notification(this,this)
+
+
     }
     override fun showBottomSheet() {
         val bottomSheetFragment = BottomSheetFragment()
@@ -70,7 +85,7 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
         GlobalScope.launch(Dispatchers.Main) {
             upcomingAdapterView.clear()
             previousadapterView.clear()
-            presenter?.getAllBoardPass(
+            presenter.getAllBoardPass(
                 this@BoardPassActivity,
                 upcomingAdapterView,
                 previousadapterView
@@ -127,6 +142,8 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
             flightClass = words[5].substring(3, 4)
             seat = words[5].substring(4, 8)
             boardingIndex = words[5].substring(8, 12)
+            qrScaneImage = result.barcodeImagePath
+            Log.d("barcodeImagePath",qrScaneImage!!)
             val date: String = setDateFormat(date!!)
             GlobalScope.launch(Dispatchers.IO) {
                 val fromCode:String? = presenter?.getAirportName(from!!)
@@ -144,7 +161,8 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
                     flightClass!!,
                     seat!!,
                     fromCode!!,
-                    toCode!!
+                    toCode!!,
+                    qrScaneImage!!
                 )
                 GlobalScope.launch(Dispatchers.IO) {
                     presenter?.insertNewBoardingpass(boardpass!!)
@@ -157,6 +175,7 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
 
 
     }
+
     override fun onStart() {
         super.onStart()
         // presenter?.deleteAll()
@@ -164,6 +183,17 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
 
 
     }
+
+
+
+    override fun showBoardPassInf(upComing: Item<GroupieViewHolder>) {
+        upComing as UpComingFlightItem
+        val intent =Intent(this,BoardingPassInformation::class.java)
+        intent.putExtra(BOARD_PASS_KEY,upComing.boardingPassModel)
+        startActivity(intent)
+
+    }
+
     fun handelView() {
         board_pass_home_img.visibility = View.GONE
         board_pass_home_txt.visibility = View.GONE
@@ -177,6 +207,13 @@ class BoardPassActivity : AppCompatActivity(), BoardingPassContract.View {
         return simpleDateFormat.format(da)
     }
 
+
+    override fun showNotification() {
+
+    }
+
 }
+
+
 
 

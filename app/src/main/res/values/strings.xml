@@ -35,4 +35,10 @@
     <string name="to_airport_name">San Francisco</string>
     <string name="your_upcoming_flight">Your uocoming flight</string>
     <string name="your_previous_flight">Your previous flight</string>
+    <string name="operating_airline">Operating airline</string>
+    <string name="airways">British Airways</string>
+    <string name="date">Date</string>
+    <string name="seat_number">35A</string>
+    <string name="class_txt">Class</string>
+    <string name="flight_class">F</string>
 </resources>
